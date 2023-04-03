@@ -9,6 +9,8 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    let titleLable = UILabel()
+    let subTitleLabel = UILabel()
     let loginView = LoginView()
     let signInButton = UIButton(type: .system)
     let errorMessageLabel = UILabel()
@@ -31,6 +33,19 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController {
     private func style() {
+        
+        titleLable.translatesAutoresizingMaskIntoConstraints = false
+        titleLable.text = "Bankey"
+        titleLable.numberOfLines = 0
+        titleLable.textAlignment = .center
+        titleLable.font = titleLable.font.withSize(50)
+        
+        subTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        subTitleLabel.text = "Your premium source for all things banking!"
+        subTitleLabel.numberOfLines = 0
+        subTitleLabel.textAlignment = .center
+        subTitleLabel.font = titleLable.font.withSize(20)
+        
         loginView.translatesAutoresizingMaskIntoConstraints = false
         
         signInButton.translatesAutoresizingMaskIntoConstraints = false
@@ -48,9 +63,27 @@ extension LoginViewController {
     }
     
     private func layout(){
+        view.addSubview(titleLable)
+        view.addSubview(subTitleLabel)
         view.addSubview(loginView)
         view.addSubview(signInButton)
         view.addSubview(errorMessageLabel)
+        
+        // TitleLabel
+        NSLayoutConstraint.activate([
+            titleLable.topAnchor.constraint(equalToSystemSpacingBelow: view.topAnchor, multiplier: 20),
+            titleLable.leadingAnchor.constraint(equalTo: loginView.leadingAnchor),
+            titleLable.trailingAnchor.constraint(equalTo: loginView.trailingAnchor)
+            
+        ])
+        
+        // SubTitleLabel
+        NSLayoutConstraint.activate([
+            subTitleLabel.topAnchor.constraint(equalToSystemSpacingBelow: titleLable.bottomAnchor, multiplier: 5),
+            subTitleLabel.leadingAnchor.constraint(equalTo: loginView.leadingAnchor),
+            subTitleLabel.trailingAnchor.constraint(equalTo: loginView.trailingAnchor)
+            
+        ])
         
         // LoginView
         NSLayoutConstraint.activate([
@@ -85,8 +118,6 @@ extension LoginViewController {
     @objc func signInTapped(sender: UIButton){
         errorMessageLabel.isHidden = true
         login()
-        
-        
     }
     
     private func login() {
