@@ -11,14 +11,17 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
+    let loginViewController = LoginViewController()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         window?.backgroundColor = .systemBackground
-        //window?.rootViewController = LoginViewController()
-        window?.rootViewController = OnboardingContainerViewController()
+        
+        loginViewController.delegate = self
+        window?.rootViewController = loginViewController
+        //window?.rootViewController = OnboardingContainerViewController()
         //window?.rootViewController = OnboardingViewController(heroImageName: "delorean", titleText: "Bankey is faster, easier to use, and has a brand new look and feel that will make you fell like you are back in the 1989")
         
         return true
@@ -27,3 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension AppDelegate: LoginViewControllerDelegate {
+    func didLogin() {
+        print("foo - did login")
+    }
+    
+    
+}
