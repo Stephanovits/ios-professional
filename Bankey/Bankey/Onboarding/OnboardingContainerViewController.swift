@@ -49,11 +49,11 @@ class OnboardingContainerViewController: UIViewController {
     private func setup(){
             view.backgroundColor = .systemPurple
             
-            addChild(pageViewController) //you need to set this relation if this VC is supposed to show view from other VC
+            addChild(pageViewController) //you need to set this relation if this VC is supposed to show view from other VCs
             view.addSubview(pageViewController.view) // we add pageViewControllers's view
             pageViewController.didMove(toParent: self) //conversely to the first line, we have to make this VC the parent of PagViewController
             
-            pageViewController.dataSource = self
+            pageViewController.dataSource = self //this is also 'simply' needed. It makes you implement the UIPageViewControllerDataSource protocol.
             pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
             
             NSLayoutConstraint.activate([
@@ -63,6 +63,10 @@ class OnboardingContainerViewController: UIViewController {
                 view.bottomAnchor.constraint(equalTo: pageViewController.view.bottomAnchor),
             ])
             
+            //'setViewControllers' is the central method. It seds the next VC that is supposed to be shown
+            // It runs automatically after a swipe. Here we run it manually once to set up what we see when we load PageViewController the first time.
+            //[page.first!] It sets the first page to be shown. Its an array because multiple views of multiple ViewControllers could be shown at once.
+            // direction: defines the in which direction to swipe
             pageViewController.setViewControllers([pages.first!], direction: .forward, animated: false, completion: nil)
             currentVC = pages.first!
     }
@@ -92,6 +96,10 @@ class OnboardingContainerViewController: UIViewController {
 // MARK: - UIPageViewControllerDataSource
 extension OnboardingContainerViewController: UIPageViewControllerDataSource {
 
+    //the function that returns the VC to 'setViewControllers()' after a right left swipe
+    // 'pageViewController' is simply the pageViewController - you don't need it any way
+    // 'viewControllerBefore' the curren VC that we want to move away from!
+    // this method should return 'nil' if we have arrived at the end
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         return getPreviousViewController(from: viewController)
     }

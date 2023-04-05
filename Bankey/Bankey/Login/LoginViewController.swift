@@ -41,7 +41,7 @@ class LoginViewController: UIViewController {
         layout()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) { //this is just so that the we get the ActivityIndicator stop spinning
         super.viewDidDisappear(animated)
         signInButton.configuration?.showsActivityIndicator = false
     }
