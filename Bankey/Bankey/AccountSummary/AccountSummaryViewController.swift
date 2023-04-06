@@ -9,7 +9,7 @@ import UIKit
 
 class AccountSummaryViewController: UIViewController {
     
-    
+    //just stores ViewModels
     var accounts: [AccountSummaryCell.ViewModel] = []
     
     var tableView = UITableView()
@@ -28,6 +28,7 @@ extension AccountSummaryViewController {
     }
     
     private func setupTableView() {
+        tableView.backgroundColor = appColor
         tableView.delegate = self
         tableView.dataSource = self
         

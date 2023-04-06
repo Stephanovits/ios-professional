@@ -60,7 +60,7 @@ extension AccountSummaryCell {
     private func setup(){
         
         typeLabel.translatesAutoresizingMaskIntoConstraints = false
-        typeLabel.text = "Account Type"
+        //typeLabel.text = "Account Type"
         typeLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
         typeLabel.adjustsFontForContentSizeCategory = true
         
@@ -68,7 +68,7 @@ extension AccountSummaryCell {
         underlineView.backgroundColor = .systemTeal
         
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.text = "Account name"
+        //nameLabel.text = "Account name"
         nameLabel.font = UIFont.preferredFont(forTextStyle: .body)
         
         balanceStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -76,12 +76,12 @@ extension AccountSummaryCell {
         balanceStackView.spacing = 0
         
         balanceLabel.translatesAutoresizingMaskIntoConstraints = false
-        balanceLabel.text = "Some balance"
+        //balanceLabel.text = "Some balance"
         balanceLabel.textAlignment = .right
         balanceLabel.font = UIFont.preferredFont(forTextStyle: .body)
         
         balanceAmountLabel.translatesAutoresizingMaskIntoConstraints = false
-        balanceAmountLabel.attributedText = makeFormattedBalance(dollars: "999,932", cents: "22")
+        //balanceAmountLabel.attributedText = makeFormattedBalance(dollars: "999,932", cents: "22")
         balanceAmountLabel.textAlignment = .right
         balanceAmountLabel.font = UIFont.preferredFont(forTextStyle: .body)
         
@@ -146,7 +146,7 @@ extension AccountSummaryCell {
     func configure(with vm: ViewModel){
         typeLabel.text = vm.accountType.rawValue
         nameLabel.text = vm.accountName
-        balanceLabel.attributedText = vm.balanceAsAttributedString
+        balanceAmountLabel.attributedText = vm.balanceAsAttributedString
         
         switch vm.accountType {
         case .Banking:
